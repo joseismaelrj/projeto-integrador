@@ -2,6 +2,7 @@ package com.example.demo.controller;
 
 import com.example.demo.dto.CarrinhoDTO;
 import com.example.demo.dto.PrecoTotalDTO;
+import com.example.demo.dto.VendasProdutoDTO;
 import com.example.demo.service.CarrinhoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -16,6 +17,7 @@ public class CarrinhoController {
 
     @Autowired
     private CarrinhoService carrinhoService;
+
 
     @PostMapping("/orders")
     public ResponseEntity<PrecoTotalDTO> criarCarrinho(@Valid @RequestBody CarrinhoDTO carrinhoDTO) {

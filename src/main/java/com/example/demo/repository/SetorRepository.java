@@ -16,4 +16,5 @@ public interface SetorRepository extends JpaRepository <Setor, Long>  {
             "WHERE oe.setor_id = :setorid " +
             "GROUP BY s.nome, s.volume", nativeQuery = true)
     CapacidadeSetor getCapacidadeSetorById(Long setorid);
+
 }

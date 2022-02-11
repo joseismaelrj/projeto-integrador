@@ -3,10 +3,12 @@ package com.example.demo.service;
 import com.example.demo.dto.AnuncioExternoDTO;
 import com.example.demo.dto.AnuncioInternoDTO;
 import com.example.demo.dto.EstoqueInternoDTO;
+import com.example.demo.dto.VendasProdutoDTO;
 import com.example.demo.entity.Anuncio;
 import com.example.demo.entity.Estoque;
 import com.example.demo.enums.Tipos;
 import com.example.demo.exception.AnunciosVaziosException;
+import com.example.demo.interfaces.VendasProdutoInterface;
 import com.example.demo.repository.AnuncioRepository;
 import com.example.demo.repository.EstoqueRepository;
 import lombok.AllArgsConstructor;
@@ -101,5 +103,18 @@ public class AnuncioService {
                 break;
         }
         return estoqueList;
+    }
+//
+//    public List<VendasProdutoInterface> findAllVendasProdutoById(Long id) {
+//        List<VendasProdutoInterface> listaVendas = anuncioRepository.findAllVendasProdutoById(id);
+//        return listaVendas;
+//    }
+
+
+    public VendasProdutoDTO findAllVendasProdutoById(Long id) {
+        List<VendasProdutoInterface> listaVendas = anuncioRepository.findAllVendasProdutoById(id);
+
+        VendasProdutoDTO vendasProdutoDTO =  VendasProdutoDTO.Converte(listaVendas);
+        return vendasProdutoDTO;
     }
 }

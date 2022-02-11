@@ -2,11 +2,14 @@ package com.example.demo.controller;
 
 import com.example.demo.dto.AnuncioExternoDTO;
 import com.example.demo.dto.AnuncioInternoDTO;
+import com.example.demo.dto.VendasProdutoDTO;
 import com.example.demo.entity.Anuncio;
 import com.example.demo.entity.OrdemEntrada;
 import com.example.demo.enums.Tipos;
 import com.example.demo.exception.AnunciosVaziosException;
+import com.example.demo.interfaces.VendasProdutoInterface;
 import com.example.demo.service.AnuncioService;
+import com.example.demo.service.CarrinhoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -46,4 +49,15 @@ public class AnuncioController {
         return ResponseEntity.status(HttpStatus.OK).body(anuncioInternoDTO);
     }
 
+//    @GetMapping("/vendas/{id}")
+//    public ResponseEntity<List<VendasProdutoInterface>> getVendasProduto(@PathVariable Long id) {
+//        List<VendasProdutoInterface> vendasProdutoDTO = anuncioService.findAllVendasProdutoById(id);
+//        return  ResponseEntity.status(HttpStatus.OK).body(vendasProdutoDTO);
+//    }
+
+    @GetMapping("/vendas/{id}")
+    public ResponseEntity<List<VendasProdutoInterface>> getVendasProduto(@PathVariable Long id) {
+        List<VendasProdutoInterface> vendasProdutoDTO = anuncioService.findAllVendasProdutoById(id);
+        return  ResponseEntity.status(HttpStatus.OK).body(vendasProdutoDTO);
+    }
 }

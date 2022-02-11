@@ -49,15 +49,9 @@ public class AnuncioController {
         return ResponseEntity.status(HttpStatus.OK).body(anuncioInternoDTO);
     }
 
-//    @GetMapping("/vendas/{id}")
-//    public ResponseEntity<List<VendasProdutoInterface>> getVendasProduto(@PathVariable Long id) {
-//        List<VendasProdutoInterface> vendasProdutoDTO = anuncioService.findAllVendasProdutoById(id);
-//        return  ResponseEntity.status(HttpStatus.OK).body(vendasProdutoDTO);
-//    }
-
     @GetMapping("/vendas/{id}")
-    public ResponseEntity<List<VendasProdutoInterface>> getVendasProduto(@PathVariable Long id) {
-        List<VendasProdutoInterface> vendasProdutoDTO = anuncioService.findAllVendasProdutoById(id);
+    public ResponseEntity<List<VendasProdutoDTO>> getVendasProduto(@PathVariable Long id) {
+        List<VendasProdutoDTO> vendasProdutoDTO = anuncioService.findAllVendasProdutoById(id);
         return  ResponseEntity.status(HttpStatus.OK).body(vendasProdutoDTO);
     }
 }

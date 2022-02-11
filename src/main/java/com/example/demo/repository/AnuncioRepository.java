@@ -36,19 +36,12 @@ public interface AnuncioRepository extends JpaRepository <Anuncio, Long> {
             "and estoque.data_validade > curdate() + 21", nativeQuery = true)
     Long findAnuncioByIdStockAndDateValid(Long id, Integer quantidade);
 
-//    @Query(value = "SELECT a.vendedor_id as vendedor, p.id as produto, p.nome as nomeProduto, sum(i.quantidade) AS totalVendas, c.data_criacao as dataCriacao" +
-//            "From anuncio AS a " +
-//            "INNER JOIN produto AS p ON p.id = a.produto_id " +
-//            "INNER JOIN item_carrinho AS i ON i.anuncio_id = a.id " +
-//            "INNER JOIN carrinho AS c ON c.id = i.carrinho_id " +
-//            "WHERE a.vendedor_id = :vendedorid and status = 0 " +
-//            "GRoUP BY a.id, p.id, p.nome, c.data_criacao", nativeQuery = true)
-    @Query(value = "SELECT a.vendedor_id as vendedor, p.id as produto, p.nome as nomeProduto, sum(i.quantidade) AS totalVendas, c.data_criacao as dataCriacao " +
+    @Query(value = "SELECT p.id as produto, p.nome as nomeProduto, sum(i.quantidade) AS totalVendas, c.data_criacao as dataCriacao " +
         "From anuncio AS a " +
         "INNER JOIN produto AS p ON p.id = a.produto_id " +
         "INNER JOIN item_carrinho AS i ON i.anuncio_id = a.id " +
         "INNER JOIN carrinho AS c ON c.id = i.carrinho_id " +
-        "WHERE a.vendedor_id = :vendedorid and status = 0 " +
-        "GRoUP BY a.id, p.id, p.nome, c.data_criacao", nativeQuery = true)
+        "WHERE a.vendedor_id = :vendedorid and status = 1 " +
+        "GRoUP BY p.id, p.nome, c.data_criacao", nativeQuery = true)
     List<VendasProdutoInterface> findAllVendasProdutoById(Long vendedorid);
 }

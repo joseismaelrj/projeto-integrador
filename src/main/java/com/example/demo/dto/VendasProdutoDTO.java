@@ -15,25 +15,9 @@ import java.util.stream.Collectors;
 @Builder
 @Validated
 public class VendasProdutoDTO {
-    private Long vendedorId;
     private Long produtoId;
     private String nomeProduto;
     private Integer totalVendas;
     private LocalDateTime dataCriacao;
-
-    public static VendasProdutoDTO converte (VendasProdutoInterface v) {
-        VendasProdutoDTO dto = VendasProdutoDTO.builder()
-                .vendedorId(v.getVendedor())
-                .produtoId(v.getProduto())
-                .nomeProduto(v.getNomeProduto())
-                .totalVendas(v.getTotalVendas())
-                .dataCriacao(v.getDataCriacao())
-                .build();
-        return dto;
-    }
-
-    public static List<VendasProdutoDTO> converteDTO(List<VendasProdutoInterface> v){
-        return v.stream().map(VendasProdutoDTO::converte).collect(Collectors.toList());
-    }
 
 }

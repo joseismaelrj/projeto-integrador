@@ -104,17 +104,14 @@ public class AnuncioService {
         }
         return estoqueList;
     }
-//
-//    public List<VendasProdutoInterface> findAllVendasProdutoById(Long id) {
-//        List<VendasProdutoInterface> listaVendas = anuncioRepository.findAllVendasProdutoById(id);
-//        return listaVendas;
-//    }
 
-
-    public VendasProdutoDTO findAllVendasProdutoById(Long id) {
+    public List<VendasProdutoDTO>findAllVendasProdutoById(Long id) {
+        List<VendasProdutoDTO> listaVendasDTO = new ArrayList<>();
         List<VendasProdutoInterface> listaVendas = anuncioRepository.findAllVendasProdutoById(id);
-
-        VendasProdutoDTO vendasProdutoDTO =  VendasProdutoDTO.Converte(listaVendas);
-        return vendasProdutoDTO;
+        listaVendas.forEach((item -> {
+            VendasProdutoDTO result = new VendasProdutoDTO(item.getProduto(),item.getNomeProduto(),item.getTotalVendas(), item.getDataCriacao());
+            listaVendasDTO.add(result);
+        }));
+        return listaVendasDTO;
     }
 }
